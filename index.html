@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>石蕊，请认真写作业</title>
+    <style>
+        /* 基础样式重置 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+        
+        /* 文字容器样式 */
+        .message-container {
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 90%;
+            max-width: 800px;
+            height: auto;
+        }
+        
+        /* 主文字样式 */
+        .main-message {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: bold;
+            color: #e74c3c; /* 醒目的红色 */
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease; /* 平滑过渡效果 */
+        }
+        
+        /* 辅助文字样式 */
+        .sub-message {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+            margin-top: 10px;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        /* 响应式设计 - 不同屏幕尺寸的字体大小调整 */
+        @media (max-width: 360px) {
+            .main-message {
+                font-size: 2.5rem; /* 小屏幕 */
+            }
+        }
+        
+        @media (min-width: 361px) and (max-width: 768px) {
+            .main-message {
+                font-size: 4rem; /* 中等屏幕 */
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1200px) {
+            .main-message {
+                font-size: 6rem; /* 大屏幕 */
+            }
+        }
+        
+        @media (min-width: 1201px) {
+            .main-message {
+                font-size: 8rem; /* 超大屏幕 */
+            }
+        }
+        
+        /* 动画效果 - 鼠标悬停时的微小变化 */
+        .main-message:hover {
+            transform: scale(1.02);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* 打印样式优化 */
+        @media print {
+            body, html {
+                background-color: white;
+            }
+            .main-message {
+                color: black;
+                font-size: 5rem !important;
+                text-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <p class="main-message">石蕊，请认真写作业</p>
+        <p class="sub-message">专注当下，效率加倍 ✨</p>
+    </div>
+
+    <script>
+        // 窗口大小改变时重新计算字体大小
+        window.addEventListener('resize', function() {
+            adjustFontSize();
+        });
+        
+        // 页面加载完成后调整字体大小
+        window.addEventListener('load', function() {
+            adjustFontSize();
+        });
+        
+        function adjustFontSize() {
+            const container = document.querySelector('.message-container');
+            const mainMessage = document.querySelector('.main-message');
+            const subMessage = document.querySelector('.sub-message');
+            
+            if (container && mainMessage) {
+                // 获取容器尺寸
+                const containerWidth = container.offsetWidth;
+                const containerHeight = container.offsetHeight;
+                
+                // 计算最大可能的字体大小（考虑容器尺寸和行高）
+                const maxFontSizeWidth = containerWidth / 8; // 宽度方向最大字体大小
+                const maxFontSizeHeight = containerHeight / 2.5; // 高度方向最大字体大小
+                
+                // 取宽度和高度方向的较小值作为基础字体大小
+                const baseFontSize = Math.min(maxFontSizeWidth, maxFontSizeHeight);
+                
+                // 应用计算出的字体大小
+                mainMessage.style.fontSize = `${baseFontSize}px`;
+                
+                // 调整辅助文字的字体大小
+                if (subMessage) {
+                    subMessage.style.fontSize = `${baseFontSize * 0.25}px`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
